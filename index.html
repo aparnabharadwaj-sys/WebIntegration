@@ -25,18 +25,18 @@
         function initBranchOnScroll() {
         if (!branchStarted && window.scrollY > 100) {
             branchStarted = true; 
+            window.removeEventListener('scroll', initBranchOnScroll);
             console.time("BranchInitDuration");  
             branch.init('key_live_cuyCKUZ3IWFx2IK4OyEXSajeuFpaZG0n', function(err, data) {
                 console.timeEnd("BranchInitDuration"); 
                 console.log("Branch initialized via scroll!");
+                console.timeEnd("FullBranchWaterfall");
         });
-        window.removeEventListener('scroll', initBranchOnScroll);
+        
     }
 }
-
-// 3. Attach the scroll listener
 window.addEventListener('scroll', initBranchOnScroll);
-    </script>
+</script>
 </head>
 <body>
     <header>
