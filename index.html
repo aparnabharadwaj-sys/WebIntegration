@@ -35,6 +35,7 @@
          }
     }
     window.addEventListener('scroll', initBranchOnScroll);*/
+    /* Ana's code
     // 1. Set no_journey to true
         let no_journey = true;
         
@@ -65,7 +66,40 @@
                 });
             }
         });
+        */
+        let no_journey = true;
+        
+        // 2. Set pixel threshold for detecting scroll
+        const SCROLL_THRESHOLD = 100;
+        let journeyShown = false;
+        let branchInitialized = false;
 
+        // 3. Show Journey on scroll - Initialize Branch ONLY when user scrolls
+        window.addEventListener('scroll', initBranchOnScroll);
+        
+        function initBranchOnScroll() {
+            const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Update scroll indicator
+            document.getElementById('scrollPos').textContent = Math.round(scrollPosition);
+            
+            // Initialize Branch and show Journey when scroll exceeds threshold
+            if (scrollPosition > SCROLL_THRESHOLD && !branchInitialized) {                
+                // Initialize Branch - this will automatically trigger the Journey
+                window.removeEventListener('scroll', initBranchOnScroll);
+                branch.init('key_live_cuyCKUZ3IWFx2IK4OyEXSajeuFpaZG0n', function(err, data) {
+                    if (err) {
+                        console.error('Branch init error:', err);
+                        window.addEventListener('scroll', initBranchOnScroll);
+                    } else {
+                        console.log("Branch initialized on scroll!")
+                        branchInitialized = true;
+                        journeyShown = true;
+                        no_journey = false;
+                        }
+                });
+            }
+        };
 </script>
 </head>
 <body>
