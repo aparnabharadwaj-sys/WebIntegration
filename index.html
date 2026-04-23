@@ -9,17 +9,97 @@
          (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener banner closeBanner closeJourney data deepview deepviewCta first init link logout removeListener setBranchViewData setIdentity track trackCommerceEvent logEvent disableTracking getBrowserFingerprintId crossPlatformIds lastAttributedTouchData setAPIResponseCallback qrCode setRequestMetaData setAPIUrl getAPIUrl setDMAParamsForEEA".split(" "), 0);
     </script>
      <script>
-         //Journey Banner load after 2 seconds.
-        branch.init('key_live_cuyCKUZ3IWFx2IK4OyEXSajeuFpaZG0n', { no_journeys: false }, function(err, data) {
+         //Journey Banner load after 10 seconds.
+        branch.init('key_live_cuyCKUZ3IWFx2IK4OyEXSajeuFpaZG0n', { no_journeys: true }, function(err, data) {
 	    console.log(err, data);     
         });
         setTimeout(showBanner, 2000);
         function showBanner()
         {
-            //branch.track("pageview");
+            branch.track("pageview");
             console.log("show banner called")
             //branch.init('key_live_cuyCKUZ3IWFx2IK4OyEXSajeuFpaZG0n', { no_journeys: false }); 
         }
+        /* Initializing Branch on scroll to optimize load time. 
+        let branchStarted = false;
+
+        function initBranchOnScroll() {
+        if (!branchStarted && window.scrollY > 100) {
+            branchStarted = true; 
+            window.removeEventListener('scroll', initBranchOnScroll);
+            console.time("BranchInitDuration");  
+            branch.init('key_live_cuyCKUZ3IWFx2IK4OyEXSajeuFpaZG0n', function(err, data) {
+                console.timeEnd("BranchInitDuration"); 
+                console.log("Branch initialized via scroll!");
+            });
+         }
+    }
+    window.addEventListener('scroll', initBranchOnScroll);*/
+    /* Ana's code
+    // 1. Set no_journey to true
+        let no_journey = true;
+        
+        // 2. Set pixel threshold for detecting scroll
+        const SCROLL_THRESHOLD = 100;
+        let journeyShown = false;
+        let branchInitialized = false;
+
+        // 3. Show Journey on scroll - Initialize Branch ONLY when user scrolls
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Update scroll indicator
+            document.getElementById('scrollPos').textContent = Math.round(scrollPosition);
+            
+            // Initialize Branch and show Journey when scroll exceeds threshold
+            if (scrollPosition > SCROLL_THRESHOLD && !branchInitialized) {                
+                // Initialize Branch - this will automatically trigger the Journey
+                branch.init('key_live_cuyCKUZ3IWFx2IK4OyEXSajeuFpaZG0n', function(err, data) {
+                    if (err) {
+                        console.error('Branch init error:', err);
+                    } else {
+                        console.log("Branch initialized on scroll!")
+                        branchInitialized = true;
+                        journeyShown = true;
+                        //no_journey = false;
+                        }
+                });
+            }
+        });
+        */
+        //let no_journey = true;
+        
+        // 2. Set pixel threshold for detecting scroll
+        /*const SCROLL_THRESHOLD = 100;
+        //let journeyShown = false;
+        let branchInitialized = false;
+
+        // 3. Show Journey on scroll - Initialize Branch ONLY when user scrolls
+        window.addEventListener('scroll', initBranchOnScroll);
+        
+        function initBranchOnScroll() {
+            const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Update scroll indicator
+            document.getElementById('scrollPos').textContent = Math.round(scrollPosition);
+            
+            // Initialize Branch and show Journey when scroll exceeds threshold
+            if (scrollPosition > SCROLL_THRESHOLD && !branchInitialized) {                
+                // Initialize Branch - this will automatically trigger the Journey
+                window.removeEventListener('scroll', initBranchOnScroll);
+                branch.init('key_live_cuyCKUZ3IWFx2IK4OyEXSajeuFpaZG0n', function(err, data) {
+                    if (err) {
+                        console.error('Branch init error:', err);
+                        window.addEventListener('scroll', initBranchOnScroll);
+                    } else {
+                        console.log("Branch initialized on scroll!")
+                        branchInitialized = true;
+                        //journeyShown = true;
+                        //no_journey = false;
+                        }
+                });
+            }
+        };*/
         
 </script>
 </head>
@@ -41,7 +121,12 @@
             <p>A live demonstration of the Branch Web SDK implementation.</p>
         </div>
     </section>
- 
+    <div id="debug-monitor">
+        Scroll Position: <span id="scrollPos">0</span>px
+    </div>
+    <div id="debug-monitor">
+        Scroll Position: <span id="scrollPos">0</span>px
+    </div>
     <footer>
         <p>&copy; 2026 Aparna Bharadwaj</p>
     </footer>
