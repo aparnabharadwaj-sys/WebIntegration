@@ -10,7 +10,7 @@
     </script>
      <script>
          //Journey Banner load after 2 seconds.
-        branch.init('key_live_cuyCKUZ3IWFx2IK4OyEXSajeuFpaZG0n', { no_journeys: true }, function(err, data) {
+        branch.init('key_live_cuyCKUZ3IWFx2IK4OyEXSajeuFpaZG0n', { no_journeys: false }, function(err, data) {
 	    console.log(err, data);     
         });
         setTimeout(showBanner, 2000);
@@ -18,7 +18,7 @@
         {
             //branch.track("pageview");
             console.log("show banner called")
-            branch.init('key_live_cuyCKUZ3IWFx2IK4OyEXSajeuFpaZG0n', { no_journeys: false }); 
+            //branch.init('key_live_cuyCKUZ3IWFx2IK4OyEXSajeuFpaZG0n', { no_journeys: false }); 
         }
         
 </script>
