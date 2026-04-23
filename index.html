@@ -9,6 +9,7 @@
          (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener banner closeBanner closeJourney data deepview deepviewCta first init link logout removeListener setBranchViewData setIdentity track trackCommerceEvent logEvent disableTracking getBrowserFingerprintId crossPlatformIds lastAttributedTouchData setAPIResponseCallback qrCode setRequestMetaData setAPIUrl getAPIUrl setDMAParamsForEEA".split(" "), 0);
     </script>
      <script>
+       /*
          //Journey Banner load after 10 seconds.
         branch.init('key_live_cuyCKUZ3IWFx2IK4OyEXSajeuFpaZG0n', { no_journeys: true }, function(err, data) {
 	    console.log(err, data);     
@@ -16,10 +17,10 @@
         setTimeout(showBanner, 10000);
         function showBanner()
         {
-            branch.track("pageview");
+            //branch.track("pageview");
             console.log("show banner called")
-            //branch.init('key_live_cuyCKUZ3IWFx2IK4OyEXSajeuFpaZG0n', { no_journeys: false }); 
-        }
+            branch.init('key_live_cuyCKUZ3IWFx2IK4OyEXSajeuFpaZG0n', { no_journeys: false }); 
+        }*/
         /* Initializing Branch on scroll to optimize load time. 
         let branchStarted = false;
 
@@ -70,7 +71,7 @@
         //let no_journey = true;
         
         // 2. Set pixel threshold for detecting scroll
-        /*const SCROLL_THRESHOLD = 100;
+        const SCROLL_THRESHOLD = 100;
         //let journeyShown = false;
         let branchInitialized = false;
 
@@ -99,7 +100,7 @@
                         }
                 });
             }
-        };*/
+        };
         
 </script>
 </head>
