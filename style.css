@@ -60,7 +60,7 @@
     }
     #debug-monitor {
     position: fixed; /* Keeps it in the same spot on the screen */
-    top: 10px;
+    top: 100px;
     right: 10px;
     background: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
     color: #00ff00; /* Neon green "matrix" style */
